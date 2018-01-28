@@ -1,0 +1,16 @@
+@import '../../components/variables.css';
+
+.root {
+  padding: 0;
+  min-height: calc(100% - 81px);
+  width: 100%;
+  display: inline-block;
+  background: var(--light-grey);
+}
+
+.container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+}
