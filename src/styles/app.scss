@@ -1,24 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600,800');
+@import 'vars';
 
-html {
+html, body, #root {
   height: 100%;
-  font-size: 16px;
-  font-family: 'Raleway', Helvetica, sans-serif;
-}
-
-body {
-  min-height: 100%;
-  background: #3c4859;
-}
-
-html, body {
   margin: 0;
   padding: 0;
 }
 
-/* red E63946 */
-/* white F1FAEE */
-/* lt blue A8DADC */
-/* md blue 457B9D */
-/* dk blue 1D3557 */
-/* off black #3c4859 */
+html {
+  font-size: 16px;
+  font-family: 'Raleway', Helvetica, sans-serif;
+  background: #3c4859;
+}
+
+.app {
+  min-height: 100%;
+  position: relative;
+}
+
+.app__setup {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  fill: $md-grey;
+  transition: transform 300ms;
+  cursor: pointer;
+  &:hover {
+    transform: rotate(90deg);
+  }
+}
