@@ -1,0 +1,23 @@
+@import 'vars';
+
+.card {
+  text-align: center;
+  background: $off-white;
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1em;
+  padding: 1rem 2rem 2rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: transform 300ms;
+
+  &.flipped {
+    transform: rotateY(180deg) translate(50%, -50%);
+  }
+}

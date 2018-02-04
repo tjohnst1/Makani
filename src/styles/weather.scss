@@ -1,6 +1,6 @@
 @import 'vars';
 
-.forecast {
+.weather {
   text-align: center;
   background: $off-white;
   font-size: 1em;
@@ -14,10 +14,14 @@
   transform: translate(-50%, -50%);
   border-radius: 1em;
   padding: 1rem 2rem 2rem;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  &.flipped {
+    opacity: 0;
+  }
 }
 
-.forecast__header {
+.weather__header {
   display: flex;
   justify-content: space-between;
   font-size: .8rem;
@@ -33,13 +37,13 @@
   }
 }
 
-.forecast__img {
+.weather__img {
   margin: 2rem 0 0 0;
   color: $lt-grey;
   font-weight: 500;
 }
 
-.forecast__temp {
+.weather__temp {
   margin: 0;
   font-weight: 400;
   font-size: 0.8rem;
@@ -56,11 +60,11 @@
   }
 }
 
-.forecast__feels-like {
+.weather__feels-like {
   color: $md-grey;
 }
 
-.forecast__upcoming {
+.weather__upcoming {
   margin: 1.5rem 0 0;
   border-top: 2px solid $lt-grey;
   display: flex;

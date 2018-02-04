@@ -1,0 +1,18 @@
+@import 'vars';
+
+.upcoming-forecast__date {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  & * {
+    margin: 0;
+  }
+  & *:nth-child(2) {
+    color: $md-grey;
+    margin: 0.25rem -0.2rem 0 0;
+  }
+  & *:last-child {
+    color: $lt-grey;
+    font-size: 0.8rem;
+  }
+}
