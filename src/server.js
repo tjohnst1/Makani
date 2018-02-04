@@ -43,31 +43,43 @@ function getCityInfo(lat, lng) {
     })
 }
 
+function getDayFromUnix(time) {
+  const dayArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const date = new Date(time * 1000);
+  return dayArr[date.getDay()];
+}
+
 function getWeatherInfo(lat, lng) {
   return fetch(`https://api.darksky.net/forecast/${process.env.REACT_APP_DS_KEY}/${lat},${lng}`)
     .then(response => response.json())
-    .then(json => ({
-      temp: {
-        current: json.currently.temperature,
-        feelsLike: json.currently.apparentTemperature,
-        summary: json.currently.summary,
-        icon: json.currently.icon,
-      },
-      upcoming: [
-        {
-          temp: (json.daily.data[1].temperatureHigh + json.daily.data[1].temperatureLow) / 2,
-          icon: json.daily.data[1].icon,
+    .then(json => {
+      console.log(json.daily.data[1])
+      return ({
+        temp: {
+          current: json.currently.temperature,
+          feelsLike: json.currently.apparentTemperature,
+          summary: json.currently.summary,
+          icon: json.currently.icon,
         },
-        {
-          temp: (json.daily.data[2].temperatureHigh + json.daily.data[2].temperatureLow) / 2,
-          icon: json.daily.data[2].icon,
-        },
-        {
-          temp: (json.daily.data[3].temperatureHigh + json.daily.data[3].temperatureLow) / 2,
-          icon: json.daily.data[3].icon,
-        },
-      ],
-    }));
+        upcoming: [
+          {
+            temp: (json.daily.data[1].temperatureHigh + json.daily.data[1].temperatureLow) / 2,
+            icon: json.daily.data[1].icon,
+            day: getDayFromUnix(json.daily.data[1].time),
+          },
+          {
+            temp: (json.daily.data[2].temperatureHigh + json.daily.data[2].temperatureLow) / 2,
+            icon: json.daily.data[2].icon,
+            day: getDayFromUnix(json.daily.data[2].time),
+          },
+          {
+            temp: (json.daily.data[3].temperatureHigh + json.daily.data[3].temperatureLow) / 2,
+            icon: json.daily.data[3].icon,
+            day: getDayFromUnix(json.daily.data[3].time),
+          },
+        ],
+      })
+    });
 }
 
 app.get('/api/city/:lat/:lng', function (req, res) {
