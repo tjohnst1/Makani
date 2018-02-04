@@ -41,6 +41,12 @@
   margin: 2rem 0 0 0;
   color: $lt-grey;
   font-weight: 500;
+
+  .icon {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 150px;
+  }
 }
 
 .weather__temp {
@@ -54,14 +60,13 @@
     font-weight: 600;
     font-size: 4rem;
     line-height: 4rem;
-  }
-  & *:last-child {
-    margin: 1rem 0 0;
+    margin: 0;
   }
 }
 
 .weather__feels-like {
   color: $md-grey;
+  margin-left: -0.75rem;
 }
 
 .weather__upcoming {

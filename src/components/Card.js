@@ -5,6 +5,10 @@ import classNames from 'classnames';
 import '../styles/card.scss'
 
 export default class Card extends Component {
+  static propTypes = {
+    flipped: PropTypes.bool.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
