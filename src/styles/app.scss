@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600,800');
 @import 'vars';
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -15,6 +22,7 @@ html {
 
 .app {
   min-height: 100%;
+  width: 100%;
   position: relative;
 }
 
@@ -23,9 +31,15 @@ html {
   top: 1em;
   right: 1em;
   fill: $md-grey;
-  transition: transform 300ms;
+  transition: all 300ms;
   cursor: pointer;
+
   &:hover {
-    transform: rotate(90deg);
+    transition: all 300ms;
+    fill: lighten($md-grey, 5%);
+  }
+
+  &:active {
+    transform: scale(0.9) rotate(90deg);
   }
 }

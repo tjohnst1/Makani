@@ -53,7 +53,6 @@ function getWeatherInfo(lat, lng) {
   return fetch(`https://api.darksky.net/forecast/${process.env.REACT_APP_DS_KEY}/${lat},${lng}`)
     .then(response => response.json())
     .then(json => {
-      console.log(json.daily.data[1])
       return ({
         temp: {
           current: json.currently.temperature,

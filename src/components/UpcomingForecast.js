@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { generateIcon } from '../helpers/helpers';
-import '../styles/upcomingforecast.scss'
+import '../styles/upcoming-forecast.scss'
 
 export default class UpcomingForecast extends Component {
   static propTypes = {
     icon: PropTypes.string.isRequired,
-    temp: PropTypes.string.isRequired,
+    temp: PropTypes.number.isRequired,
     day: PropTypes.string.isRequired,
   };
 

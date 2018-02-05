@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Weather from './Weather';
+import OptionsPanel from './OptionsPanel';
+import Loading from './Loading';
 import classNames from 'classnames';
 import '../styles/card.scss'
 
@@ -25,12 +27,14 @@ export default class Card extends Component {
         feelsLike: null,
         summary: null,
         icon: null,
+        unitOfMeasurement: 'fahrenheit',
       },
       upcoming: [],
     }
     this.geolocateUser = this.geolocateUser.bind(this);
     this.getCityInfo = this.getCityInfo.bind(this);
     this.getWeatherInfo = this.getWeatherInfo.bind(this);
+    this.updateUnitOfMeasurement = this.updateUnitOfMeasurement.bind(this);
   }
 
   geolocateUser() {
@@ -62,11 +66,23 @@ export default class Card extends Component {
     const { lat, lng } = cityInfo;
     return fetch(`/api/weather/${lat}/${lng}`)
       .then(res => res.json())
-      .then(json => ({
+      .then(json => {
+        const units = cityInfo.country === 'US' ? 'fahrenheit' : 'celsius';
+        return {
         location: cityInfo,
-        temp: json.temp,
+        temp: Object.assign({}, json.temp, {unitOfMeasurement: units}),
         upcoming: json.upcoming,
-      }))
+        }
+      })
+  }
+
+  updateUnitOfMeasurement(unit) {
+    this.setState({
+      temp: {
+        ...this.state.temp,
+        unitOfMeasurement: unit,
+      }
+    })
   }
 
   componentDidMount() {
@@ -84,16 +100,27 @@ export default class Card extends Component {
 
   render() {
     const { location, temp, upcoming } = this.state;
-    console.log(this.props)
     const { flipped } = this.props;
-    const props = { location, temp, upcoming, flipped };
+    const props = { location, temp, upcoming };
     const classes = classNames({
       card: true,
       flipped,
     })
+
+    if (!location.lat) {
+      return <Loading />;
+    }
+
     return (
-      <div className={classes}>
-        <Weather {...props} />
+      <div className="card__perspective-container">
+        <div className={classes}>
+          <Weather {...props} />
+          <OptionsPanel
+            unitOfMeasurement={temp.unitOfMeasurement}
+            location={location}
+            updateUnitOfMeasurement={this.updateUnitOfMeasurement}
+          />
+        </div>
       </div>
     )
   }

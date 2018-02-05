@@ -5,30 +5,30 @@ import classNames from 'classnames';
 import { generateIcon } from '../helpers/helpers';
 import '../styles/weather.scss'
 
-export default class Forecast extends Component {
+export default class Weather extends Component {
   static propTypes = {
     location: PropTypes.shape({
-      lat: PropTypes.string,
-      lng: PropTypes.string,
+      lat: PropTypes.number,
+      lng: PropTypes.number,
       zip: PropTypes.string,
       city: PropTypes.string,
       state: PropTypes.string,
       country: PropTypes.string,
     }).isRequired,
-    temp: {
-      current: PropTypes.string,
-      feelsLike: PropTypes.string,
+    temp: PropTypes.shape({
+      current: PropTypes.number,
+      feelsLike: PropTypes.number,
       summary: PropTypes.string,
       icon: PropTypes.string,
-    },
+      unitOfMeasurement: PropTypes.string,
+    }),
     upcoming: PropTypes.arrayOf(
       PropTypes.shape({
         icon: PropTypes.string,
-        temp: PropTypes.string,
+        temp: PropTypes.number,
         day: PropTypes.string,
       })
     ).isRequired,
-    hide: false,
   };
 
   render() {
