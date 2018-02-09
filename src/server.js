@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const express = require('express');
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 const path = require('path');
 const cors = require('cors');
 const fetch = require('node-fetch');
@@ -10,11 +10,11 @@ const app = express();
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'build')));
 
-function getCityInfo(lat, lng) {
+function getCityInfoFromCoords(lat, lng) {
   return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
     .then(response => response.json())
     .then(json => {
-      const location = {}
+      const cityInfo = {}
 
       // check that something was indeed found
       if (json.status === 'OK') {
@@ -24,13 +24,13 @@ function getCityInfo(lat, lng) {
             result.address_components.forEach(addressComponent => {
               switch (addressComponent.types[0]) {
                 case 'postal_code':
-                  return location.zip = addressComponent.long_name;
+                  return cityInfo.zip = addressComponent.long_name;
                 case 'locality':
-                  return location.city = addressComponent.long_name;
+                  return cityInfo.city = addressComponent.long_name;
                 case 'administrative_area_level_1':
-                  return location.state = addressComponent.long_name;
+                  return cityInfo.state = addressComponent.long_name;
                 case 'country':
-                  return location.country = addressComponent.short_name;
+                  return cityInfo.country = addressComponent.short_name;
                 default:
                   return;
               }
@@ -39,7 +39,7 @@ function getCityInfo(lat, lng) {
         })
       }
 
-      return location;
+      return cityInfo;
     })
 }
 
@@ -81,9 +81,48 @@ function getWeatherInfo(lat, lng) {
     });
 }
 
+function getCityInfoFromLocation(location) {
+  return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+    .then(response => response.json())
+    .then(json => {
+      const cityInfo = {}
+
+      // check that something was indeed found
+      if (json.status === 'OK') {
+        const result = json.results[0];
+        result.address_components.forEach(addressComponent => {
+          switch (addressComponent.types[0]) {
+            case 'postal_code':
+              return cityInfo.zip = addressComponent.long_name;
+            case 'locality':
+            case 'political':
+              return cityInfo.city = addressComponent.long_name;
+            case 'administrative_area_level_1':
+              return cityInfo.state = addressComponent.long_name;
+            case 'country':
+              return cityInfo.country = addressComponent.short_name;
+            default:
+              return;
+          }
+        })
+
+        cityInfo.lat = result.geometry.location.lat;
+        cityInfo.lng = result.geometry.location.lng;
+      }
+
+      return cityInfo;
+    })
+}
+
+app.get('/api/city/:location', function (req, res) {
+  const { location } = req.params
+  getCityInfoFromLocation(location)
+    .then(cityInfo => res.json(cityInfo))
+});
+
 app.get('/api/city/:lat/:lng', function (req, res) {
   const { lat, lng } = req.params
-  getCityInfo(lat, lng)
+  getCityInfoFromCoords(lat, lng)
     .then(cityInfo => res.json(cityInfo))
 });
 
