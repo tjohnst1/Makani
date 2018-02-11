@@ -82,7 +82,9 @@ function getWeatherInfo(lat, lng) {
 }
 
 function getCityInfoFromLocation(location) {
-  return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
+  const trimmedLocation = location.replace(' ', '');
+
+  return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${trimmedLocation}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
     .then(response => response.json())
     .then(json => {
       const cityInfo = {}

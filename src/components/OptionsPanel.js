@@ -48,7 +48,9 @@ export default class OptionsPanel extends Component {
             <option value="celsius">Celsius</option>
           </select>
         </div>
-        <button onClick={() => this.updateAndFlip(this.state.location)}>Done</button>
+        <div className="options-panel__btn-container">
+          <button className="options-panel__btn" onClick={() => this.updateAndFlip(this.state.location)}>Done</button>
+        </div>
       </div>
     );
   }
