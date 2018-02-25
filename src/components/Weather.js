@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import UpcomingForecast from './UpcomingForecast';
 import classNames from 'classnames';
 import { generateIcon } from '../helpers/helpers';
 import '../styles/weather.scss'
 
-export default class Weather extends Component {
+class Weather extends Component {
   static propTypes = {
     location: PropTypes.shape({
       lat: PropTypes.number,
@@ -15,24 +16,25 @@ export default class Weather extends Component {
       state: PropTypes.string,
       country: PropTypes.string,
     }).isRequired,
-    temp: PropTypes.shape({
-      current: PropTypes.number,
+    currentWeather: PropTypes.shape({
+      temp: PropTypes.number,
       feelsLike: PropTypes.number,
       summary: PropTypes.string,
       icon: PropTypes.string,
       unitOfMeasurement: PropTypes.string,
     }),
-    upcoming: PropTypes.arrayOf(
+    forecast: PropTypes.arrayOf(
       PropTypes.shape({
         icon: PropTypes.string,
         temp: PropTypes.number,
         day: PropTypes.string,
       })
     ).isRequired,
+    flipped: PropTypes.bool.isRequired,
   };
 
   render() {
-    const { location, temp, upcoming, flipped } = this.props;
+    const { location, currentWeather, forecast, flipped } = this.props;
     const classes = classNames({
       weather: true,
       flipped,
@@ -44,17 +46,29 @@ export default class Weather extends Component {
           <p className="weather__location">{location.city}</p>
         </div>
         <div className="weather__img">
-          {generateIcon(temp.icon)}
-          <p>{temp.summary}</p>
+          {generateIcon(currentWeather.icon)}
         </div>
+        <p className="weather__summary">{currentWeather.summary}</p>
         <div className="weather__temp">
-          <p>{Math.round(temp.current)}&deg;</p>
-          <p className="weather__feels-like">Feels like {Math.round(temp.feelsLike)}&deg;</p>
+          <p>{Math.round(currentWeather.temp)}&deg;</p>
+          <p className="weather__feels-like">Feels like {Math.round(currentWeather.feelsLike)}&deg;</p>
         </div>
         <div className="weather__upcoming">
-          {upcoming.length > 0 ? upcoming.map((data, i) => <UpcomingForecast icon={data.icon} temp={data.temp} day={data.day} key={i} />) : null}
+          {forecast.map((data, i) => <UpcomingForecast icon={data.icon} temp={data.temp} day={data.day} key={i} />)}
         </div>
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  const { card, currentWeather, location, forecast } = state;
+  return {
+    flipped: card.flipped,
+    currentWeather,
+    forecast,
+    location,
+  }
+}
+
+export default connect(mapStateToProps)(Weather);

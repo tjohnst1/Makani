@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { updateWeatherInfoIfNeeded } from '../actions/weatherActions';
+import { toggleCard } from '../actions/cardActions';
 import '../styles/options-panel.scss';
 
-export default class OptionsPanel extends Component {
+class OptionsPanel extends Component {
   static propTypes = {
     location: PropTypes.shape({
       lat: PropTypes.number,
@@ -13,45 +16,66 @@ export default class OptionsPanel extends Component {
       country: PropTypes.string,
     }).isRequired,
     unitOfMeasurement: PropTypes.string.isRequired,
-    updateUnitOfMeasurement: PropTypes.func.isRequired,
+    handleUpdateWeatherInfoIfNeeded: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      location: props.location.zip,
+      query: props.location.zip,
+      unitOfMeasurement: props.unitOfMeasurement,
     }
-    this.updateAndFlip = this.updateAndFlip.bind(this);
   }
 
-  updateLocation(value) {
-    this.setState({location: value})
-  }
-
-  updateAndFlip(cityInfo) {
-    this.props.updateCityInfo(cityInfo);
-    this.props.toggleCard();
+  updateState(key, value) {
+    this.setState({[key]: value})
   }
 
   render() {
-    const { location, unitOfMeasurement, updateUnitOfMeasurement } = this.props;
+    const { query, unitOfMeasurement } = this.state;
+    const { handleUpdateWeatherInfoIfNeeded } = this.props;
+    const newValues = {
+      query: this.state.query,
+      weather: {
+        unitOfMeasurement: this.state.unitOfMeasurement,
+      }
+    }
     return (
       <div className="options-panel">
         <div className="options-panel__input-group">
-          <label htmlFor="location">City, State, or Zip Code</label>
-          <input type="text" name="location" value={this.state.location} onChange={e => this.updateLocation(e.target.value)} />
+          <label htmlFor="query">City, State, or Zip Code</label>
+          <input type="text" name="query" value={query} onChange={e => this.updateState('query', e.target.value)} />
         </div>
         <div className="options-panel__input-group">
           <label htmlFor="measurement-type">Unit of Measurement:</label>
-          <select value={unitOfMeasurement} onChange={(e) => updateUnitOfMeasurement(e.target.value)}>
+          <select value={unitOfMeasurement} onChange={(e) => this.updateState('unitOfMeasurement', e.target.value)}>
             <option value="fahrenheit">Fahrenheit</option>
             <option value="celsius">Celsius</option>
           </select>
         </div>
         <div className="options-panel__btn-container">
-          <button className="options-panel__btn" onClick={() => this.updateAndFlip(this.state.location)}>Done</button>
+          <button className="options-panel__btn" onClick={() => handleUpdateWeatherInfoIfNeeded(newValues)}>Done</button>
         </div>
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  const { location, currentWeather } = state;
+  return {
+    location,
+    unitOfMeasurement: currentWeather.unitOfMeasurement,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleToggleCard: () => dispatch(toggleCard),
+    handleUpdateWeatherInfoIfNeeded: newValues => {
+      dispatch(updateWeatherInfoIfNeeded(newValues));
+    },
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OptionsPanel);
