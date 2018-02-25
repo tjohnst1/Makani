@@ -14,7 +14,7 @@ function getCityInfoFromCoords(lat, lng) {
   return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
     .then(response => response.json())
     .then(json => {
-      const cityInfo = {}
+      const cityInfo = {};
 
       // check that something was indeed found
       if (json.status === 'OK') {
@@ -54,13 +54,13 @@ function getWeatherInfo(lat, lng) {
     .then(response => response.json())
     .then(json => {
       return ({
-        temp: {
-          current: json.currently.temperature,
+        currentWeather: {
+          temp: json.currently.temperature,
           feelsLike: json.currently.apparentTemperature,
           summary: json.currently.summary,
           icon: json.currently.icon,
         },
-        upcoming: [
+        forecast: [
           {
             temp: (json.daily.data[1].temperatureHigh + json.daily.data[1].temperatureLow) / 2,
             icon: json.daily.data[1].icon,
@@ -87,7 +87,7 @@ function getCityInfoFromLocation(location) {
   return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${trimmedLocation}&key=${process.env.REACT_APP_GOOGLE_KEY}`)
     .then(response => response.json())
     .then(json => {
-      const cityInfo = {}
+      const cityInfo = {};
 
       // check that something was indeed found
       if (json.status === 'OK') {
@@ -117,21 +117,24 @@ function getCityInfoFromLocation(location) {
 }
 
 app.get('/api/city/:location', function (req, res) {
-  const { location } = req.params
+  const { location } = req.params;
   getCityInfoFromLocation(location)
     .then(cityInfo => res.json(cityInfo))
+    .catch(() => res.status(500));
 });
 
 app.get('/api/city/:lat/:lng', function (req, res) {
-  const { lat, lng } = req.params
+  const { lat, lng } = req.params;
   getCityInfoFromCoords(lat, lng)
     .then(cityInfo => res.json(cityInfo))
+    .catch(() => res.status(500));
 });
 
 app.get('/api/weather/:lat/:lng', function (req, res) {
-  const { lat, lng } = req.params
+  const { lat, lng } = req.params;
   getWeatherInfo(lat, lng)
     .then(weatherInfo => res.json(weatherInfo))
+    .catch(() => res.status(500));
 });
 
 app.listen(process.env.PORT || 8080);

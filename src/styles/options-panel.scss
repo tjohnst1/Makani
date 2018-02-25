@@ -8,7 +8,7 @@
   height: 100%;
   backface-visibility: hidden;
   transform: rotateY( 180deg );
-  background: $off-white;
+  background: $dk-blue-grey;
   border-radius: 1em;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   padding: 1rem 2rem 2rem;
@@ -25,7 +25,7 @@
   label {
     font-size: 0.7rem;
     display: block;
-    color: $md-grey;
+    color: $lt-grey;
   }
 
   input {
@@ -50,19 +50,28 @@
 }
 
 .options-panel__btn {
-  margin: 1rem auto 0;
+  margin: 1.5rem auto 0;
   border: 0;
   font-size: 1rem;
   width: 50%;
   text-align: center;
   padding: 0.5rem;
   display: inline-block;
-  background: $off-black;
-  color: $off-white;
+  background: $lt-grey;
+  color: $dk-blue-grey;
   border-radius: $slightly-rounded;
+  position: relative;
 
   &:hover {
-    background: lighten($off-black, 5%);
+    background: lighten($lt-grey, 5%);
     cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.97);
   }
 }

@@ -45,3 +45,11 @@ export function generateIcon(name, className = "icon") {
       return null;
   }
 }
+
+export function fahrenheitToCelsius(temp) {
+  return (5 / 9) * (temp - 32);
+}
+
+export function celsiusToFahrenheit(temp) {
+  return ((9 / 5) * temp) + 32;
+}

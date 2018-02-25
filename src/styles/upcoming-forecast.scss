@@ -10,18 +10,19 @@
   }
 
   & *:nth-child(2) {
-    color: $md-grey;
+    color: $lt-grey;
     margin: 0.25rem -0.2rem 0 0;
   }
 
   & *:last-child {
-    color: $lt-grey;
+    color: $md-grey;
     font-size: 0.8rem;
   }
 
   .icon {
     width: 100%;
     max-width: 30px;
+    height: 19px;
     margin: 0 auto;
     padding-left: 5px;
   }

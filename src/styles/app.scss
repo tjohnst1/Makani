@@ -4,8 +4,11 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 html, body, #root {
@@ -17,7 +20,7 @@ html, body, #root {
 html {
   font-size: 16px;
   font-family: 'Raleway', Helvetica, sans-serif;
-  background: #3c4859;
+  background: $dker-blue-grey;
 }
 
 .app {

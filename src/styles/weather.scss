@@ -7,11 +7,11 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  padding: 1rem 2rem 2rem;
+  padding: 2rem;
   text-align: center;
-  background: $off-white;
+  background: $dk-blue-grey;
   border-radius: 1em;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(2,2,2,0.16), 0 3px 6px rgba(2,2,2,0.23);
 }
 
 .weather__header {
@@ -23,16 +23,16 @@
   color: $md-grey;
   & > * {
     flex-direction: row;
-    &:last-child {
-      color: $off-black;
-      font-weight: 600;
-    }
   }
+}
+
+.weather__location {
+  color: $lt-grey;
+  font-weight: 600;
 }
 
 .weather__img {
   margin: 2rem 0 0 0;
-  color: $lt-grey;
   font-weight: 500;
 
   .icon {
@@ -43,10 +43,16 @@
   }
 }
 
+.weather__summary {
+  margin: 0.5rem 0 1rem;
+  color: $lt-grey;
+}
+
 .weather__temp {
   margin: 0;
   font-weight: 400;
   font-size: 0.8rem;
+  color: $lt-grey;
   & * {
     margin: 0.5rem 0 0;
   }
@@ -65,25 +71,8 @@
 
 .weather__upcoming {
   margin: 1.5rem 0 0;
-  border-top: 2px solid $lt-grey;
+  border-top: 2px solid $md-grey;
   display: flex;
   flex-direction: row;
   padding: 2rem 0 0 0;
-}
-
-.forcast__upcoming-date {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  & * {
-    margin: 0;
-  }
-  & *:nth-child(2) {
-    color: $md-grey;
-    margin: 0.25rem -0.2rem 0 0;
-  }
-  & *:last-child {
-    color: $lt-grey;
-    font-size: 0.8rem;
-  }
 }
