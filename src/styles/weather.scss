@@ -9,7 +9,7 @@
   backface-visibility: hidden;
   padding: 2rem;
   text-align: center;
-  background: $dk-blue-grey;
+  background: $off-white;
   border-radius: 1em;
   box-shadow: 0 3px 6px rgba(2,2,2,0.16), 0 3px 6px rgba(2,2,2,0.23);
 }
@@ -27,7 +27,7 @@
 }
 
 .weather__location {
-  color: $lt-grey;
+  color: $dk-blue-grey;
   font-weight: 600;
 }
 
@@ -45,14 +45,14 @@
 
 .weather__summary {
   margin: 0.5rem 0 1rem;
-  color: $lt-grey;
+  color: $md-grey;
 }
 
 .weather__temp {
   margin: 0;
   font-weight: 400;
   font-size: 0.8rem;
-  color: $lt-grey;
+  color: $dk-blue-grey;
   & * {
     margin: 0.5rem 0 0;
   }
@@ -71,7 +71,7 @@
 
 .weather__upcoming {
   margin: 1.5rem 0 0;
-  border-top: 2px solid $md-grey;
+  border-top: 2px solid $lt-grey;
   display: flex;
   flex-direction: row;
   padding: 2rem 0 0 0;

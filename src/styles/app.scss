@@ -20,7 +20,9 @@ html, body, #root {
 html {
   font-size: 16px;
   font-family: 'Raleway', Helvetica, sans-serif;
-  background: $dker-blue-grey;
+  background: $periwinkle;
+  background: -webkit-linear-gradient(to right, $soft-grey, $periwinkle);
+  background: linear-gradient(to right, $soft-grey, $periwinkle);
 }
 
 .app {
