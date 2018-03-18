@@ -1,6 +1,6 @@
 import React from 'react';
 import { generateIcon, fahrenheitToCelsius } from '../../helpers/helpers';
-import CloudyIcon from '....//img/cloudy.svg';
+import CloudyIcon from '../../img/cloudy.svg';
 import DayCloudyIcon from '../../img/day-cloudy.svg';
 import DaySunnyIcon from '../../img/day-sunny.svg';
 import FogIcon from '../../img/fog.svg';

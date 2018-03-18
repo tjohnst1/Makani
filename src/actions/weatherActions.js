@@ -1,5 +1,5 @@
 import { SET_WEATHER } from '../constants';
-import { fahrenheitToCelsius, celsiusToFahrenheit } from '../helpers/helpers';
+import { fahrenheitToCelsius } from '../helpers/helpers';
 
 export function getWeatherInfo(location = null, unitOfMeasurement = 'fahrenheit') {
   return dispatch =>
