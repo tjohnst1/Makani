@@ -1,4 +1,4 @@
-# Blue Skies
+# Makani
 A weather app, build utilizing React
 
 # Demo
