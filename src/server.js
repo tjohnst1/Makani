@@ -39,6 +39,7 @@ function getCityInfoFromCoords(lat, lng) {
         })
       }
 
+      console.log(cityInfo)
       return cityInfo;
     })
 }

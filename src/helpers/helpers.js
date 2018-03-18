@@ -13,34 +13,38 @@ import ThunderstormIcon from '../img/thunderstorm.svg';
 import TornadoIcon from '../img/tornado.svg';
 import WindyIcon from '../img/windy.svg';
 
-export function generateIcon(name, className = "icon") {
+// the default case has been added because dark sky sometimes returns "night" icon values
+export function generateIcon(name, defaultToDay = false) {
   switch (name) {
     case 'clear-day':
-      return <DaySunnyIcon className={className} />;
+      return <DaySunnyIcon className="icon" />;
     case 'clear-night':
-      return <NightClearIcon className={className} />;
+      return <NightClearIcon className="icon" />;
     case 'rain':
-      return <RainIcon className={className} />;
+      return <RainIcon className="icon" />;
     case 'snow':
-      return <SnowIcon className={className} />;
+      return <SnowIcon className="icon" />;
     case 'sleet':
-      return <SleetIcon className={className} />;
+      return <SleetIcon className="icon" />;
     case 'wind':
-      return <WindyIcon className={className} />;
+      return <WindyIcon className="icon" />;
     case 'fog':
-      return <FogIcon className={className} />;
+      return <FogIcon className="icon" />;
     case 'cloudy':
-      return <CloudyIcon className={className} />;
+      return <CloudyIcon className="icon" />;
     case 'partly-cloudy-day':
-      return <DayCloudyIcon className={className} />;
+      return <DayCloudyIcon className="icon" />;
     case 'partly-cloudy-night':
-      return <NightAltCloudyIcon className={className} />;
+      if (defaultToDay) {
+        return <DayCloudyIcon className="icon" />;
+      }
+      return <NightAltCloudyIcon className="icon" />;
     case 'hail':
-      return <HailIcon className={className} />;
+      return <HailIcon className="icon" />;
     case 'thunderstorm':
-      return <ThunderstormIcon className={className} />;
+      return <ThunderstormIcon className="icon" />;
     case 'tornado':
-      return <TornadoIcon className={className} />;
+      return <TornadoIcon className="icon" />;
     default:
       return null;
   }

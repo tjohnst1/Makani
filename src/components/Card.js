@@ -8,7 +8,7 @@ import Loading from './Loading';
 import { getWeatherInfo } from '../actions/weatherActions';
 import '../styles/card.scss'
 
-class Card extends Component {
+export class Card extends Component {
   static propTypes = {
     flipped: PropTypes.bool.isRequired,
     loading: PropTypes.bool,

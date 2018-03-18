@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { updateWeatherInfoIfNeeded } from '../actions/weatherActions';
-import { toggleCard } from '../actions/cardActions';
 import '../styles/options-panel.scss';
 
-class OptionsPanel extends Component {
+export class OptionsPanel extends Component {
   static propTypes = {
     location: PropTypes.shape({
       lat: PropTypes.number,
@@ -17,7 +16,7 @@ class OptionsPanel extends Component {
     }).isRequired,
     unitOfMeasurement: PropTypes.string.isRequired,
     handleUpdateWeatherInfoIfNeeded: PropTypes.func.isRequired,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -71,7 +70,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleToggleCard: () => dispatch(toggleCard),
     handleUpdateWeatherInfoIfNeeded: newValues => {
       dispatch(updateWeatherInfoIfNeeded(newValues));
     },

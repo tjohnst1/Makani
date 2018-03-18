@@ -14,9 +14,9 @@ export default class UpcomingForecast extends Component {
     const { icon, temp, day } = this.props;
     return (
       <div className="upcoming-forecast__date">
-        {generateIcon(icon)}
-        <p>{Math.round(temp)}&deg;</p>
-        <p>{day}</p>
+        {generateIcon(icon, true)}
+        <p className="upcoming-forecast__temp">{Math.round(temp)}&deg;</p>
+        <p className="upcoming-forecast__day">{day}</p>
       </div>
     )
   }

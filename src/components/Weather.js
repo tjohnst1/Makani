@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { generateIcon } from '../helpers/helpers';
 import '../styles/weather.scss'
 
-class Weather extends Component {
+export class Weather extends Component {
   static propTypes = {
     location: PropTypes.shape({
       lat: PropTypes.number,

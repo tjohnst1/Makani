@@ -5,7 +5,7 @@ import Card from '../components/Card';
 import { toggleCard } from '../actions/cardActions';
 import '../styles/app.scss';
 
-class App extends Component {
+export class App extends Component {
   static propTypes = {
     handleToggleCard: PropTypes.func.isRequired,
   }
