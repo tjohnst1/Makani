@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import UpcomingForecast from '../components/UpcomingForecast';
+import UpcomingForecast from '../../components/UpcomingForecast';
 
 describe('<UpcomingForecast />', function() {
   const props = {

@@ -1,18 +1,18 @@
 import React from 'react';
-import { generateIcon, fahrenheitToCelsius } from '../helpers/helpers';
-import CloudyIcon from '../img/cloudy.svg';
-import DayCloudyIcon from '../img/day-cloudy.svg';
-import DaySunnyIcon from '../img/day-sunny.svg';
-import FogIcon from '../img/fog.svg';
-import HailIcon from '../img/hail.svg';
-import NightAltCloudyIcon from '../img/night-alt-cloudy.svg';
-import NightClearIcon from '../img/night-clear.svg';
-import RainIcon from '../img/rain.svg';
-import SleetIcon from '../img/sleet.svg';
-import SnowIcon from '../img/snow.svg';
-import ThunderstormIcon from '../img/thunderstorm.svg';
-import TornadoIcon from '../img/tornado.svg';
-import WindyIcon from '../img/windy.svg';
+import { generateIcon, fahrenheitToCelsius } from '../../helpers/helpers';
+import CloudyIcon from '....//img/cloudy.svg';
+import DayCloudyIcon from '../../img/day-cloudy.svg';
+import DaySunnyIcon from '../../img/day-sunny.svg';
+import FogIcon from '../../img/fog.svg';
+import HailIcon from '../../img/hail.svg';
+import NightAltCloudyIcon from '../../img/night-alt-cloudy.svg';
+import NightClearIcon from '../../img/night-clear.svg';
+import RainIcon from '../../img/rain.svg';
+import SleetIcon from '../../img/sleet.svg';
+import SnowIcon from '../../img/snow.svg';
+import ThunderstormIcon from '../../img/thunderstorm.svg';
+import TornadoIcon from '../../img/tornado.svg';
+import WindyIcon from '../../img/windy.svg';
 
 describe('generateIcon', function() {
   it ('should display a icon based on text input', function() {

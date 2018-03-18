@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { OptionsPanel } from '../components/OptionsPanel';
+import { OptionsPanel } from '../../components/OptionsPanel';
 
 describe('<OptionsPanel />', function() {
   const props = {

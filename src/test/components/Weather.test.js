@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Weather } from '../components/Weather';
+import { Weather } from '../../components/Weather';
 
 describe('<Weather />', function() {
   const props = {

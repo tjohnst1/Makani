@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ErrorMsg from '../components/ErrorMsg';
+import ErrorMsg from '../../components/ErrorMsg';
 
 describe('<ErrorMsg />', function() {
   const props = {
