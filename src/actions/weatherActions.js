@@ -8,7 +8,7 @@ export function getWeatherInfo(location = null, unitOfMeasurement = 'fahrenheit'
       .then(weatherInfo => dispatch(setWeather(weatherInfo)))
 }
 
-function getLocationInfo(location = null) {
+export function getLocationInfo(location = null) {
   // if no zip or city input is provided, geolocate the user and define the location, and fetch the weather data
   if (!location) {
     return geoLocateUser()
@@ -18,7 +18,7 @@ function getLocationInfo(location = null) {
   return fetchLocationInfoFromQuery(location)
 }
 
-function geoLocateUser() {
+export function geoLocateUser() {
   return fetch(`https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_KEY}`, { method: 'POST' })
     .then(response => response.json())
     .then(json => ({
@@ -27,7 +27,7 @@ function geoLocateUser() {
     }));
 }
 
-function fetchLocationInfoFromCoords(coords) {
+export function fetchLocationInfoFromCoords(coords) {
   const { lat, lng } = coords;
   return fetch(`/api/city/${lat}/${lng}`)
     .then(res => res.json())
@@ -43,7 +43,7 @@ function fetchLocationInfoFromCoords(coords) {
     });
 }
 
-function fetchLocationInfoFromQuery(location) {
+export function fetchLocationInfoFromQuery(location) {
   return fetch(`/api/city/${location}`)
     .then(res => res.json())
     .then(json => {
@@ -58,7 +58,7 @@ function fetchLocationInfoFromQuery(location) {
     });
 }
 
-function fetchWeatherInfo(locationInfo, unitOfMeasurement) {
+export function fetchWeatherInfo(locationInfo, unitOfMeasurement) {
   const { lat, lng } = locationInfo;
   return fetch(`/api/weather/${lat}/${lng}`)
     .then(res => res.json())
@@ -89,14 +89,14 @@ function fetchWeatherInfo(locationInfo, unitOfMeasurement) {
     });
 }
 
-function setWeather(weatherInfo) {
+export function setWeather(weatherInfo) {
   return {
     type: SET_WEATHER,
     weather: weatherInfo,
   }
 }
 
-function shouldGetWeatherInfo(query, currentLocation) {
+export function shouldGetWeatherInfo(query, currentLocation) {
   switch (query) {
     case currentLocation.city:
     case currentLocation.zip:
@@ -117,6 +117,6 @@ export function updateWeatherInfoIfNeeded(options) {
   }
 }
 
-function shouldUpdateUnitOfMeasurement(newValue, currentUnit) {
+export function shouldUpdateUnitOfMeasurement(newValue, currentUnit) {
   return newValue !== currentUnit;
 }

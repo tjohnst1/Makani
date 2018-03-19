@@ -105,8 +105,10 @@
     "chai": "^4.1.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "fetch-mock": "^6.3.0",
     "node-sass": "^4.7.2",
     "react-svg-loader": "^2.1.0",
+    "redux-mock-store": "^1.5.1",
     "sass-loader": "^6.0.6",
     "webpack": "^3.8.1"
   },
