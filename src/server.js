@@ -1,7 +1,6 @@
 require('dotenv').config()
 
 const express = require('express');
-// const bodyParser = require('body-parser')
 const path = require('path');
 const cors = require('cors');
 const fetch = require('node-fetch');
@@ -38,8 +37,6 @@ function getCityInfoFromCoords(lat, lng) {
           }
         })
       }
-
-      console.log(cityInfo)
       return cityInfo;
     })
 }
@@ -139,3 +136,5 @@ app.get('/api/weather/:lat/:lng', function (req, res) {
 });
 
 app.listen(process.env.PORT || 8080);
+
+module.exports = app;
