@@ -27,4 +27,16 @@ describe('<OptionsPanel />', function() {
     expect(optionsPanel.children().find('select').props().value).toEqual('fahrenheit');
   });
 
+  it('should change state when the user adds info to the form fields', function() {
+    optionsPanel.children().find('input[name="query"]').simulate('change', { target: { value: '11205' } })
+    optionsPanel.children().find('select').simulate('change', { target: { value: 'celsius' } })
+    expect(optionsPanel.state()).toEqual({"query": "11205", "unitOfMeasurement": "celsius"})
+  });
+
+  it('should dispatch handleUpdateWeatherInfoIfNeeded when the done button is clicked', function() {
+    // optionsPanel.find('button').simulate('click')
+    console.log(optionsPanel.props())
+    expect()
+  });
+
 });
