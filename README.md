@@ -1,9 +1,6 @@
 # Makani
 A weather app, build utilizing React
 
-# Demo
-[Link TK]
-
 # Technologies Used
 React, Javascript, Webpack, Google Maps Javascript API, Dark Sky Weather API
 
