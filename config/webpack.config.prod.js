@@ -143,6 +143,30 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          // load svgs with react-svg-loader
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: "babel-loader"
+              },
+              {
+                loader: "react-svg-loader",
+                options: {
+                  jsx: true,
+                  svgo: {
+                    plugins: [
+                      {
+                        removeComments: true,
+                        removeDoctype: true,
+                        inlineStyles: true,
+                      }
+                    ]
+                  },
+                },
+              }
+            ]
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
